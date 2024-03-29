@@ -35,7 +35,7 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void open_file(char *montyfile, FILE *fd);
-void push(stack_t **stack, unsigned int line_number);
+void open_file(char *montyfile, FILE **fd);
+void push(stack_t **stack, unsigned int line_number, int n);
 void pall(stack_t **stack, unsigned int line_number);
 #endif

@@ -4,12 +4,11 @@
  * @stack: pointer to a pointer to a stack_t type.
  * @line_number: number of line.
  */
-void push(stack_t **stack, unsigned int line_number)
+void push(stack_t **stack, unsigned int line_number, int n)
 {
-	int integer = 0;
 	stack_t *new_element;
 
-	if (!integer)
+	if (!n)
 	{
 		fprintf(stderr, "L%d: usage: push integer", line_number);
 		exit(EXIT_FAILURE);
@@ -21,20 +20,16 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
+	new_element->n = n;
+	new_element->prev = NULL;
 	if (*stack == NULL)
-	{
-		new_element->n = integer;
 		new_element->next = NULL;
-		new_element->prev = NULL;
-		*stack = new_element;
-	}
 	else
 	{
-		new_element->n = integer;
 		new_element->next = *stack;
-		new_element->prev = NULL;
-		*stack = new_element;
+		(*stack)->prev = new_element;
 	}
+	*stack = new_element;
 }
 
 /**
@@ -48,7 +43,7 @@ void pall(stack_t **stack, unsigned int line_number)
 	(void) line_number;
 
 	top = *stack;
-	while(top)
+	while(top != NULL)
 	{
 		printf("%d\n", top->n);
 		top = top->next;

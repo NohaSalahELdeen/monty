@@ -8,9 +8,9 @@
 
 int main(int argc, char *argv[])
 {
-	unsigned int l_number;
+	unsigned int l_number = 1;
 	size_t length = 0;
-	char *line;
+	char *line = NULL;
 	FILE *fd = NULL;
 
 	if (argc != 2)
@@ -19,8 +19,10 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	open_file(argv[1], fd);
+	open_file(argv[1], &fd);
 	while (getline(&line, &length, fd) != -1)
 		l_number++;
+	free(line);
+	fclose(fd);
 	return (0);
 }
