@@ -1,16 +1,17 @@
 #include "monty.h"
 /**
  * push -  pushes an element to the stack.
- * @stack: pointer to a pointer to a stack_t type.
- * @line_number: number of line.
+ * @head: pointer to a pointer to a stack_t type.
+ * @numbering: number of line.
  */
-void push(stack_t **stack, unsigned int line_number, int n)
+void push(stack_t **head, unsigned int numbering)
 {
+	int n = 0;
 	stack_t *new_element;
 
 	if (!n)
 	{
-		fprintf(stderr, "L%d: usage: push integer", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", numbering);
 		exit(EXIT_FAILURE);
 	}
 
@@ -22,27 +23,27 @@ void push(stack_t **stack, unsigned int line_number, int n)
 	}
 	new_element->n = n;
 	new_element->prev = NULL;
-	if (*stack == NULL)
+	if (*head == NULL)
 		new_element->next = NULL;
 	else
 	{
-		new_element->next = *stack;
-		(*stack)->prev = new_element;
+		new_element->next = *head;
+		(*head)->prev = new_element;
 	}
-	*stack = new_element;
+	*head = new_element;
 }
 
 /**
  * pall - prints all the values on the stack.
- * @stack: pointer to a pointer to a stack_t type.
- * @line_number: number of line.
+ * @head: pointer to a pointer to a stack_t type.
+ * @numbering: number of line.
  */
-void pall(stack_t **stack, unsigned int line_number)
+void pall(stack_t **head, unsigned int numbering)
 {
 	stack_t *top;
-	(void) line_number;
+	(void) numbering;
 
-	top = *stack;
+	top = *head;
 	while(top != NULL)
 	{
 		printf("%d\n", top->n);
