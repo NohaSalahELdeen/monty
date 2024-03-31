@@ -18,6 +18,8 @@ void execute_instruct(stack_t **stack, unsigned int numbering)
 	{
 		if (strcmp(instruct[i].opcode, "push") == 0)
 			instruct[i].f(stack, numbering);
+		else if (strcmp(instruct[i].opcode, "pall") == 0)
+			instruct[i].f(stack, numbering);
 	}
 
 	if (!instruct[i].opcode)

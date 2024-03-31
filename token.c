@@ -21,7 +21,6 @@ char **strtoken(char *line)
 		x++;
 		token = strtok(NULL, delim);
 	}
-	free(temp);
 
 	tokens = malloc((x + 1) * sizeof(char*));
 	if (tokens == NULL)
